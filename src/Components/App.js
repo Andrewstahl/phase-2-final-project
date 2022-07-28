@@ -3,6 +3,7 @@
 import React, { useEffect, useState} from "react";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import StockList from "./StockList"
 
 /**
  * App Hierarchy
@@ -19,15 +20,19 @@ import NavBar from "./NavBar";
  */
 
 function App() {
-  
+  const [stocks, setStocks] = useState([])
+
   useEffect(() => {
     fetch("http://localhost:4000/stocks")
+      .then(r => r.json())
+      .then(data => setStocks(data))
   }, [])
   
   return (
     <>
       <Header />
       <NavBar />
+      <StockList stocks={stocks} />
     </>
   );
 }

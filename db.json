@@ -5,21 +5,25 @@
       "name": "Apple",
       "holdings": [
         {
-          "amount": 0,
-          "purchase_price": 0
+          "amount": 5,
+          "purchase_price": 121
+        },
+        {
+          "amount": 1,
+          "purchase_price": 150
         }
       ],
       "favorite": false,
-      "last_price": 0,
+      "last_price": 122,
       "last_update": "7/21/2022"
     },
     {
       "id": 2,
-      "name": "Apple",
+      "name": "Microsoft",
       "holdings": [
         {
-          "amount": 0,
-          "purchase_price": 0
+          "amount": 4,
+          "purchase_price": 300
         }
       ],
       "favorite": false,
@@ -28,11 +32,19 @@
     },
     {
       "id": 3,
-      "name": "Apple",
+      "name": "Paycom",
       "holdings": [
         {
-          "amount": 0,
-          "purchase_price": 0
+          "amount": 26,
+          "purchase_price": 330
+        },
+        {
+          "amount": 5,
+          "purchase_price": 500
+        },
+        {
+          "amount": 17,
+          "purchase_price": 177
         }
       ],
       "favorite": false,
