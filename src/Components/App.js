@@ -1,9 +1,10 @@
 
-// import  './App.css';
+import  '../../src/App.css';
 import React, { useEffect, useState} from "react";
 import Header from "./Header";
 import NavBar from "./NavBar";
 import StockList from "./StockList"
+import StockForm from './StockForm';
 
 /**
  * App Hierarchy
@@ -21,8 +22,6 @@ import StockList from "./StockList"
 
 function App() {
   
-  console.log(process.env.REACT_APP_ALPHAVANTAGE_KEY)
-
   const [stocks, setStocks] = useState([])
 
   useEffect(() => {
@@ -36,6 +35,7 @@ function App() {
       <Header />
       <NavBar />
       <StockList stocks={stocks} />
+      <StockForm />
     </>
   );
 }
