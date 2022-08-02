@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
-.red-line {
+.redLine {
+  border: 1px;
   border-color: red;
 }
