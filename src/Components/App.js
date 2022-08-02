@@ -20,6 +20,9 @@ import StockList from "./StockList"
  */
 
 function App() {
+  
+  console.log(process.env.REACT_APP_ALPHAVANTAGE_KEY)
+
   const [stocks, setStocks] = useState([])
 
   useEffect(() => {
