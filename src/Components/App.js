@@ -1,5 +1,6 @@
 
 import  '../../src/App.css';
+import  '../../src/index.css';
 import React, { useEffect, useState} from "react";
 import Header from "./Header";
 import NavBar from "./NavBar";
