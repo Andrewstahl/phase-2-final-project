@@ -70,16 +70,23 @@ code {
 
 div.stockElement {
   background-color:rgb(226, 226, 237);
-  margin: 10px;
-  border: 10px;
-  padding-left: 1px;
+  margin: 1em;
+  /* border: 10px; */
+  padding: 1em;
+}
+
+div.stock-title {
+  display: inline;
+  /* float: left; */
 }
 
 h4 {
   margin-bottom: 0em;
+  margin-top: 0em;
   font-size: 20px;
   font-style: italic;
 }
+
 p {
   margin-top: 0px ;
   margin-bottom: 1px ;
