@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Stock({ stock }) {
-const {name, holdings, favorite} = stock;
+const {name, holdings, holdingType, favorite} = stock;
 
   let totalStocks = 0;
   const holdingsLength = holdings.length;
@@ -13,9 +13,12 @@ const {name, holdings, favorite} = stock;
 
   return (
     <div>
-      <h4>{name}</h4>
+      <div className="stock-title">
+        <h4>{name}</h4>
+        <p>{favorite ? "Liked" : "Not Liked"}</p>
+      </div>
       <p>{totalStocks} Shares</p>
-      <p>{favorite ? "Liked" : "Not Liked"}</p>
+      <p>{holdingType}</p>
     </div>
   )
 }
