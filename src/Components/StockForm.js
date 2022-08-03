@@ -12,8 +12,8 @@ export default function StockForm() {
           name="stockTicker" 
           placeholder="Enter Stock Ticker"
           />
-        
-        <select onChange={() => setUserSelection(userSelection === "Dollars" ? "Number" : "Dollars")}>
+        <label htmlFor="buy-type-select">Enter Which Option You Are Looking to Buy</label>
+        <select name="buy-type-select" onChange={() => setUserSelection(userSelection === "Dollars" ? "Number" : "Dollars")}>
           <option value="number">Number of Stocks</option>
           <option value="dollars">Dollar Amount</option>
         </select>
