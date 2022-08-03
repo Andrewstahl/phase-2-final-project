@@ -15,7 +15,7 @@ const {name, holdings, holdingType, favorite} = stock;
     <div>
       <div className="stock-title">
         <h4>{name}</h4>
-        <p>{favorite ? "Liked" : "Not Liked"}</p>
+        <span className={favorite ? "activated-heart" : ""}>{favorite ? "♥" : "♡"}</span>
       </div>
       <p>{totalStocks} Shares</p>
       <p>{holdingType}</p>
