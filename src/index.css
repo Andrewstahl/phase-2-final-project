@@ -68,7 +68,7 @@ code {
     monospace;
 }
 
-div.stockElement {
+div.stock-element {
   background-color:rgb(226, 226, 237);
   margin: 1em;
   /* border: 10px; */
