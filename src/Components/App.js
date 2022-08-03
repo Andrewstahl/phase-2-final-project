@@ -2,7 +2,7 @@
 import  '../../src/App.css';
 import  '../../src/index.css';
 import React, { useEffect, useState} from "react";
-import { Route, Switch } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Header from "./Header";
 import NavBar from "./NavBar";
 import StockList from "./StockList"
@@ -43,17 +43,11 @@ function App() {
     <>
       <Header />
       <NavBar />
-      <Switch>
-        <Route exact path="/">
-          <StockList stocks={stocks} />
-        </Route>
-        <Route path="/favorites">
-          <Favorites stocks={stocks} />
-        </Route>
-        <Route exact path="/allocations">
-          <Allocations stocks={stocks} />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<StockList stocks={stocks} />} />
+        <Route path="/favorites" element={<Favorites stocks={stocks} />} />
+        <Route path="/allocations" element={<Allocations stocks={stocks} />} />
+      </Routes>
       <StockForm />
     </>
   );
