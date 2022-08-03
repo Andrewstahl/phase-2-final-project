@@ -2,18 +2,24 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const linkStyles = {
-  display: "inline-block",
-  width: "50px",
-  padding: "12px",
-  margin: "0 6px 6px",
-  background: "blue",
+  display: "stretch",
+  alignContent: "center",
+  float: "left",
+  width: "100%",
+  // padding: "12px",
+  margin: "10px",
+  fontSize: "20px",
+  // background: "blue",
   textDecoration: "none",
-  color: "white",
+  color: "#171785",
+  fontWeight: "bold",
+  textAlign: "center",
+  alignItems: "center"
 };
 
 export default function NavBar() {
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       {/* <h3>NavBar Placeholder</h3> */}
       <NavLink 
         to="/"

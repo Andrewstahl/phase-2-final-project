@@ -17,7 +17,6 @@ export default function StockForm() {
           <option value="number">Number of Stocks</option>
           <option value="dollars">Dollar Amount</option>
         </select>
-        
         <label htmlFor="buyAmount">Enter The Buy Amount</label>
         <input 
           type="number" 
