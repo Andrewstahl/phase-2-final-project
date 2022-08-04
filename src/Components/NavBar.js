@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 const linkStyles = {
   display: "stretch",
   alignContent: "center",
-  float: "left",
   width: "100%",
-  // padding: "12px",
-  margin: "10px",
+  height: "20%",
+  padding: "1em",
   fontSize: "20px",
   textDecoration: "none",
   color: "#171785",
@@ -21,18 +20,21 @@ const linkStylesActive = {
   background: "white"
 }
 
+const navLinkStyles = {
+  display: "flex",
+  borderTop: "1px solid grey",
+  borderBottom: "1px solid grey"
+}
+
 export default function NavBar() {
   return (
-    <div style={{ margin: "0 300px" }}>
-      <div style={{ display: "flex" }}>
+    <div style={{ margin: "0 200px" }}>
+      {/* <div style={{ display: "flex", border: "10px" }}> */}
+      <div style={{ ...navLinkStyles }}>
         {/* <h3>NavBar Placeholder</h3> */}
         <NavLink 
           to="/"
           exact
-          // style={({ isActive }) => ({
-          //   linkStyles,
-          //   background: isActive ? "grey" : null
-          // })}
           style={({ isActive }) => (
             isActive ? linkStylesActive : linkStyles 
           )}
@@ -42,20 +44,18 @@ export default function NavBar() {
         <NavLink 
           to="/favorites"
           exact
-          style={linkStyles}
-          activeStyle={{
-            background: "darkblue",
-          }}
+          style={({ isActive }) => (
+            isActive ? linkStylesActive : linkStyles 
+          )}
         >
           Favorites
         </NavLink>
         <NavLink 
           to="/allocations"
           exact
-          style={linkStyles}
-          activeStyle={{
-            background: "darkblue",
-          }}
+          style={({ isActive }) => (
+            isActive ? linkStylesActive : linkStyles 
+          )}
         >
           Allocations
         </NavLink>
