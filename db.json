@@ -3,6 +3,7 @@
     {
       "id": 1,
       "name": "Apple",
+      "ticker": "AAPL",
       "holdings": [
         {
           "amount": 5,
@@ -21,6 +22,7 @@
     {
       "id": 2,
       "name": "Microsoft",
+      "ticker": "MSFT",
       "holdings": [
         {
           "amount": 4,
@@ -35,6 +37,7 @@
     {
       "id": 3,
       "name": "Paycom",
+      "ticker": "PAYC",
       "holdings": [
         {
           "amount": 26,
@@ -57,6 +60,7 @@
     {
       "id": 4,
       "name": "Bitcoin",
+      "ticker": "BTC",
       "holdings": [
         {
           "amount": 0.2,
@@ -79,6 +83,7 @@
     {
       "id": 5,
       "name": "HSBC Holdings plc",
+      "ticker": "HSBA",
       "holdings": [
         {
           "amount": 30,
