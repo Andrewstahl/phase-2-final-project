@@ -59,6 +59,15 @@ export default function NavBar() {
         >
           Allocations
         </NavLink>
+        <NavLink 
+          to="/order"
+          exact
+          style={({ isActive }) => (
+            isActive ? linkStylesActive : linkStyles 
+          )}
+        >
+          New Order
+        </NavLink>
       </div>
     </div>
   )

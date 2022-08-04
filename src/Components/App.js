@@ -47,8 +47,8 @@ function App() {
         <Route exact path="/" element={<StockList stocks={stocks} />} />
         <Route path="/favorites" element={<Favorites stocks={stocks} />} />
         <Route path="/allocations" element={<Allocations stocks={stocks} />} />
+        <Route path="/order" element={<StockForm stocks={stocks} />} />
       </Routes>
-      <StockForm />
     </>
   );
 }
