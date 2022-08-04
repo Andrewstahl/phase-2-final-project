@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom"
 import Header from "./Header";
 import NavBar from "./NavBar";
 import StockList from "./StockList"
-import StockForm from './StockForm';
+import NewOrderForm from './NewOrderForm';
 import Favorites from './Favorites';
 import Allocations from './Allocations';
 
@@ -47,7 +47,7 @@ function App() {
         <Route exact path="/" element={<StockList stocks={stocks} />} />
         <Route path="/favorites" element={<Favorites stocks={stocks} />} />
         <Route path="/allocations" element={<Allocations stocks={stocks} />} />
-        <Route path="/order" element={<StockForm stocks={stocks} />} />
+        <Route path="/order" element={<NewOrderForm stocks={stocks} />} />
       </Routes>
     </>
   );
