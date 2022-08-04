@@ -61,6 +61,7 @@ div.form-container {
   border-radius: 5px;
   /* background-color: #f8efef; */
   padding: 20px;
+  margin: 3em 15em;
 }
 
 code {
@@ -78,6 +79,12 @@ div.stock-element {
 div.stock-title {
   display: inline;
   /* float: left; */
+}
+
+div.header {
+  /* position: fixed; */
+  /* top: 0;
+  left: 0; */
 }
 
 h4 {
