@@ -95,3 +95,7 @@ p {
 span.activated-heart {
   color: red;
 }
+
+div.nav-links {
+  display: "flex"
+}
