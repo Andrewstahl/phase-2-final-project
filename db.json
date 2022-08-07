@@ -4,16 +4,7 @@
       "id": 1,
       "name": "Apple",
       "ticker": "AAPL",
-      "holdings": [
-        {
-          "amount": 5,
-          "purchase_price": 121
-        },
-        {
-          "amount": 1,
-          "purchase_price": 150
-        }
-      ],
+      "totalStocksHeld": 10,
       "holdingType": "Domestic",
       "favorite": true,
       "last_price": 122,
@@ -23,12 +14,7 @@
       "id": 2,
       "name": "Microsoft",
       "ticker": "MSFT",
-      "holdings": [
-        {
-          "amount": 4,
-          "purchase_price": 300
-        }
-      ],
+      "totalStocksHeld": 4,
       "holdingType": "Domestic",
       "favorite": false,
       "last_price": 0,
@@ -38,20 +24,7 @@
       "id": 3,
       "name": "Paycom",
       "ticker": "PAYC",
-      "holdings": [
-        {
-          "amount": 26,
-          "purchase_price": 330
-        },
-        {
-          "amount": 5,
-          "purchase_price": 500
-        },
-        {
-          "amount": 17,
-          "purchase_price": 177
-        }
-      ],
+      "totalStocksHeld": 52,
       "holdingType": "Domestic",
       "favorite": true,
       "last_price": 350,
@@ -61,20 +34,7 @@
       "id": 4,
       "name": "Bitcoin",
       "ticker": "BTC",
-      "holdings": [
-        {
-          "amount": 0.2,
-          "purchase_price": 7550
-        },
-        {
-          "amount": 0.05,
-          "purchase_price": 10000
-        },
-        {
-          "amount": 0.3,
-          "purchase_price": 8880
-        }
-      ],
+      "totalStocksHeld": 0.12,
       "holdingType": "Crypto",
       "favorite": false,
       "last_price": 0,
@@ -84,16 +44,7 @@
       "id": 5,
       "name": "HSBC Holdings plc",
       "ticker": "HSBA",
-      "holdings": [
-        {
-          "amount": 30,
-          "purchase_price": 32.45
-        },
-        {
-          "amount": 45,
-          "purchase_price": 29.84
-        }
-      ],
+      "totalStocksHeld": 95,
       "holdingType": "Foreign",
       "favorite": false,
       "last_price": 32.66,
