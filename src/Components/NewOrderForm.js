@@ -16,26 +16,57 @@ export default function NewOrderForm({ stocks }) {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const tickerId = stocks.map(stock => {
+      return stock.ticker === ticker ? stock.id : null
+    })
+    
+    if (buySellOption === "Buy") {
+      fetch("http://localhost:4000/stocks", {
+
+      })
+    } else if (buySellOption === "Sell") {
+      fetch(`http://localhost:4000/stocks/${tickerId}`, {
+        method: "PATCH",
+        headers: {
+          "CONTENT-TYPE": "application/json"
+        },
+        body: JSON.stringify({
+
+        })
+      })
+    }
+  }
+
   const currentStocks = stocks.map(stock => {
-    return <option key={stock.ticker} value={stock.ticker}>{stock.ticker}</option>
+    return <option key={stock.id} value={stock.ticker}>{stock.ticker}</option>
   })
 
-  // const currentStockAmount = stocks.
+  // const currentStockAmount = 
+  //   stocks
+  //     .filter(stock => stock.ticker === ticker)
+  //     .reduce(() => function(total, stock) {
+  //       return total + stock.holding.amount
+  //     })
+
+  // console.log(currentStockAmount)
 
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="buy-sell-select">Are You Buying or Selling Stock?</label>
         <select name="buy-sell-select" onChange={(e) => handleSelect(e)}>
           <option hidden value="">Pick an Option</option>
-          <option value="buy">Buy</option>
+          <option value="buy-new">Buy New</option>
+          <option value="buy-more">Buy More</option>
           <option value="sell">Sell</option>
         </select>
         {buySellOption !== "" 
           ? (
             <>
               <label htmlFor="stockTicker">Enter the Stock Ticker for this Stock</label>
-              {buySellOption === "Buy"
+              {buySellOption === "Buy New"
                 ? (
                   <input 
                     type="text"
@@ -55,13 +86,13 @@ export default function NewOrderForm({ stocks }) {
                   </select>
                 )
               }
-              
-              <label htmlFor="buy-type-select">Enter Which Option You Are Looking to {buySellOption}</label>
+              {/* <label htmlFor="buy-type-select">Enter Which Option You Are Looking to {(buySellOption).split(" ")[0]}</label>
               <select name="buy-type-select" onChange={(e) => handleSelect(e)}>
                 <option value="number">Number of Stocks</option>
                 <option value="dollars">Dollar Amount</option>
-              </select>
-              <label htmlFor="buyAmount">Enter The {orderOption}</label>
+              </select> */}
+              
+              <label htmlFor="buyAmount">Enter The {orderOption} You Are Looking to {(buySellOption).split(" ")[0]}</label>
               <input 
                 type="number" 
                 name="buyAmount"
