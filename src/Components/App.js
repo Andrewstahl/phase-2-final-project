@@ -39,6 +39,10 @@ function App() {
       .then(data => setStocks(data))
   }, [])
   
+  function handleNewOrder(stock) {
+    
+  }
+
   return (
     <>
       <Header />
@@ -47,7 +51,7 @@ function App() {
         <Route exact path="/" element={<StockList stocks={stocks} />} />
         <Route path="/favorites" element={<Favorites stocks={stocks} />} />
         <Route path="/allocations" element={<Allocations stocks={stocks} />} />
-        <Route path="/order" element={<NewOrderForm stocks={stocks} />} />
+        <Route path="/order" element={<NewOrderForm stocks={stocks} onNewOrder={handleNewOrder} />} />
       </Routes>
     </>
   );
