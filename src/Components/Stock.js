@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Stock({ stock }) {
-const {name, ticker, holdings, holdingType, favorite} = stock;
+export default function Stock({ stock, onFavorite }) {
+  const {id, name, ticker, totalStocksHeld, holdingType, favorite} = stock;
+  const [favoriteSelection, setFavoriteSelection] = useState(favorite)
 
-  let totalStocks = 0;
-  const holdingsLength = holdings.length;
-  // console.log(holdingsLength -1)
-  for (let i = holdingsLength - 1; i > -1; i--) {
-    totalStocks += holdings[i].amount;
-    // console.log(totalStocks)
+  // let totalStocks = 0;
+  // const holdingsLength = holdings.length;
+  // // console.log(holdingsLength -1)
+  // for (let i = holdingsLength - 1; i > -1; i--) {
+  //   totalStocks += holdings[i].amount;
+  //   // console.log(totalStocks)
+  // }
+
+  function handleClick() {
+    const newFavoriteSelection = !favoriteSelection;
+    setFavoriteSelection(newFavoriteSelection)
+    fetch(`http://localhost:4000/stocks/${id}`, {
+      method: "PATCH",
+      headers: {
+        "CONTENT-TYPE": "application/json"
+      },
+      body: JSON.stringify({
+        ...stock,
+        "favorite": favoriteSelection
+      })
+    })
+      .then(r => r.json())
+      .then(data => console.log(data))
   }
 
   return (
     <div>
       <div className="stock-title">
-        <span className={favorite ? "activated-heart" : ""}>{favorite ? "♥" : "♡"}</span>
+        <span onClick={() => handleClick()} className={favoriteSelection ? "activated-heart" : ""}>{favoriteSelection ? "♥" : "♡"}</span>
         <h4>{name} [{ticker}]</h4>
       </div>
-      <p>{totalStocks} Shares</p>
+      <p>{totalStocksHeld} Shares</p>
       <p>Type: {holdingType}</p>
     </div>
   )
