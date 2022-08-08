@@ -6,9 +6,7 @@
       "ticker": "AAPL",
       "totalStocksHeld": 10,
       "holdingType": "Domestic",
-      "favorite": true,
-      "last_price": 122,
-      "last_update": "7/21/2022"
+      "favorite": true
     },
     {
       "id": 2,
@@ -16,9 +14,7 @@
       "ticker": "MSFT",
       "totalStocksHeld": 4,
       "holdingType": "Domestic",
-      "favorite": false,
-      "last_price": 0,
-      "last_update": "7/21/2022"
+      "favorite": false
     },
     {
       "id": 3,
@@ -26,9 +22,7 @@
       "ticker": "PAYC",
       "totalStocksHeld": 52,
       "holdingType": "Domestic",
-      "favorite": true,
-      "last_price": 350,
-      "last_update": "7/21/2022"
+      "favorite": true
     },
     {
       "id": 4,
@@ -36,9 +30,7 @@
       "ticker": "BTC",
       "totalStocksHeld": 0.12,
       "holdingType": "Crypto",
-      "favorite": true,
-      "last_price": 0,
-      "last_update": "7/21/2022"
+      "favorite": true
     },
     {
       "id": 5,
@@ -46,9 +38,7 @@
       "ticker": "HSBA",
       "totalStocksHeld": 95,
       "holdingType": "Foreign",
-      "favorite": false,
-      "last_price": 32.66,
-      "last_update": "7/21/2022"
+      "favorite": false
     }
   ]
 }
