@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import Favorites from "./Favorites";
 
 export default function NewOrderForm({ stocks }) {
   // const [userSelection, setUserSelection] = useState("Number");
@@ -39,14 +40,44 @@ export default function NewOrderForm({ stocks }) {
     
     let fetchMethod, endingUrl, body, callback
 
+    // Specifically for buying more or selling something that's in 
+    // your portfolio, we will have different methods for fetching
+    // this data
     if (buySellOption === "Sell" || buySellOption === "Buy More") {
-      const tickerId = stocks.filter(stock => {
-        return stock.ticker === ticker ? stock.id : null
-      })
+      // For either of these, we're going to need the ticker ID
+      // for the URL
+      const returnedStock = stocks.filter(stock => {
+        return stock.ticker === ticker ? stock.id : null})[0];
+      const tickerId = returnedStock.ticker;
+      const currentStockAmount = returnedStock.totalStocksHeld;
+
+      if (buyAmount.sellAll === true) {
+        // if we've selected to sell everything, we're going to need
+        // to delete that item
+        fetchMethod = "DELETE";
+        body = {};
+      } else {
+        // Otherwise, we're going to just patch it with the 
+        // number of stocks that we're going to purchase
+        fetchMethod = "PATCH"
+        body = {
+          totalStocksHeld: currentStockAmount + buyAmount.amount 
+        }
+      }
+      endingUrl = tickerId
+
+    } else if (buySellOption === "Buy New") {
+      fetchMethod = "POST";
+      endingUrl = "";
+      body = {
+        ticker: ticker,
+        totalStocksHeld: buyAmount.amount,
+        favorite: false,
+
+      }
     }
     
-    
-
+    handleFetch(fetchMethod, endingUrl, body, callback)
   }
 
   function handleFetch(fetchMethod, endingUrl, body, callback) {
@@ -58,7 +89,7 @@ export default function NewOrderForm({ stocks }) {
       body: JSON.stringify({body})
     })
       .then(r => r.json())
-      .then(data => callback(data))
+      .then(data => console.log(data))
   }
 
   // This creates options for the select field if we are selling stock or buying more
