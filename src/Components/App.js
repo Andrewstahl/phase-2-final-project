@@ -61,9 +61,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
-        <Route path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
-        <Route path="/allocations" element={<Allocations stocks={stocks} />} />
-        <Route path="/order" element={<NewOrderForm stocks={stocks} onNewOrder={handleNewOrder} />} />
+        <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
+        <Route exact path="/allocations" element={<Allocations stocks={stocks} />} />
+        <Route exact path="/order" element={<NewOrderForm stocks={stocks} onNewOrder={handleNewOrder} />} />
       </Routes>
     </>
   );
