@@ -1,23 +1,50 @@
-# Getting Started with Create React App
+# Stahl Stock Trader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the repository of my Phase 1 final project for Flatiron School.
 
-## Available Scripts
+*This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)*
 
-In the project directory, you can run:
+## Goal
 
-### `npm start`
+The goal of this project is to leverage my knowledge of JavaScript, React, client-side routing, server-manipulation, and APIs to create a single-page application.
 
+## Project Overview
+This site prompts provides sample data for a stock portfolio. 
+
+### `Home`
+On the home page, the user will see all of the stocks currently in their portfolio. This will show some basic details about the stock, such as the name, ticker, number of shares held, stock type (domestic, international, cryptocurrency), and a favorite status. 
+
+### `Favorites`
+The "Favorites" page will show the user only the stocks that they have favorited. The favorite buttons are interactive and clicking on them will alter their favorite status on the server.
+
+### `Allocations`
+The "Allocations" page will allow the user to see a break-out of their allocations by investment type (domestic, international, cryptocurrency) within a pie chart.
+
+### `New Order`
+The "New Order" page will allow the user to either buy or sell stock. They have the choice to sell stock they have, buy more stock of what they already own, or buy a completely new stock. Depending on their choice, the page will only render applicable input fields for the user. The user will also be able to see the current stock price of that stock, which is aided through an API. After they make a decision, this will update the server and bring them back to the home page.
+
+## Outline of Responsibilities
+Here's a quick outline of the responsibilities for this project, henceforth known as the SHP (Stahl Holiday Picker):
+- As the page loads, it will pull in the stocks from the db.json file and populate the sheet
+  - The `Home`, `Favorites`, `Allocations`, and `New Order` tabs will all include this stock data
+- If the user clicks on any one of the pages, it should render a specific component and route to it so that each component has it's own URL
+- If the user clicks on the ♥ button next to any of the stocks, it will toggle the "Favorite" status on that stock. This will either remove or show it in the "Favorites" section and change the appearance of the button to appear either full or empty
+
+
+## Potential Future Developments
+- Since the API used only allows for a certain number of calls a minute/month, a good future development would be to refresh the stock prices on loading the home and allowing the user to manually pull in new prices
+- I had the db.json file originally include datapoints around the holdings/purchases, such as the number of shares purchased, amount purchased, and date purchase. I had to simplify the scope due to the constraints of the API but this can definitely be added in the future
+- Allow puchase of dollars instead of just number of shares (again, had to adjust functionality due to API constraints)
+
+
+
+### Extras
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -28,16 +55,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
