@@ -29,7 +29,7 @@
       "name": "Bitcoin",
       "ticker": "BTC",
       "totalStocksHeld": 0.12,
-      "holdingType": "Crypto",
+      "holdingType": "Cryptocurrency",
       "favorite": true
     },
     {
@@ -37,7 +37,7 @@
       "name": "HSBC Holdings plc",
       "ticker": "HSBA",
       "totalStocksHeld": 95,
-      "holdingType": "Foreign",
+      "holdingType": "International",
       "favorite": false
     }
   ]
