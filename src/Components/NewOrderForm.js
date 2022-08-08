@@ -24,39 +24,41 @@ export default function NewOrderForm({ stocks }) {
   function handleSellAll(e) {
     e.preventDefault();
     
-    const totalShares = stocks.filter(stock => stock.ticker === ticker)
+    const totalShares = stocks.filter(stock => stock.ticker === ticker)[0].totalStocksHeld
     
-    console.log(totalShares)
+    setBuyAmount({
+      amount: totalShares,
+      sellAll: true
+    })
  
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     // Grab the ticker ID so we can use it with the fetches
-    const tickerId = stocks.map(stock => {
-      return stock.ticker === ticker ? stock.id : null
-    })
-    if (buySellOption === "Buy") {
-      fetch("http://localhost:4000/stocks", {
-        headers: {
-          "CONTENT-TYPE": "application.json"
-        },
-        body: JSON.stringify({
+    
+    let fetchMethod, endingUrl, body, callback
 
-        })
-      })
-    } else if (buySellOption === "Sell") {
-      
-      fetch(`http://localhost:4000/stocks/${tickerId}`, {
-        method: "PATCH",
-        headers: {
-          "CONTENT-TYPE": "application/json"
-        },
-        body: JSON.stringify({
-
-        })
+    if (buySellOption === "Sell" || buySellOption === "Buy More") {
+      const tickerId = stocks.filter(stock => {
+        return stock.ticker === ticker ? stock.id : null
       })
     }
+    
+    
+
+  }
+
+  function handleFetch(fetchMethod, endingUrl, body, callback) {
+    fetch(`http://localhost:4000/stocks/${endingUrl}`, {
+      method: {fetchMethod},
+      headers: {
+        "CONTENT-TYPE": "application/json"
+      },
+      body: JSON.stringify({body})
+    })
+      .then(r => r.json())
+      .then(data => callback(data))
   }
 
   // This creates options for the select field if we are selling stock or buying more
@@ -95,6 +97,7 @@ export default function NewOrderForm({ stocks }) {
                     name="stockTicker" 
                     onChange={(e) => setTicker(e.target.value)}
                   >
+                    <option hidden default>Pick a Ticker</option>
                     {currentStocks}
                   </select>
                 )
@@ -104,23 +107,29 @@ export default function NewOrderForm({ stocks }) {
                 <option value="number">Number of Stocks</option>
                 <option value="dollars">Dollar Amount</option>
               </select> */}
-
-              <label htmlFor="buyAmount">Enter The {orderOption} You Are Looking to {(buySellOption).split(" ")[0]}</label>
-              <input 
-                type="number" 
-                name="buyAmount"
-                value={buyAmount.amount}
-                onChange={(e) => setBuyAmount(e.target.value)}
-                placeholder={`Enter ${orderOption === "Number of Stocks" ? "Number" : "Amount"}`} 
-              />
-              <div className="newOrderButtons">
-                <button onClick={(e) => e.preventDefault()}>Check Current Price</button>
-                {buySellOption === "Sell" 
-                  ? <button onClick={(e) => handleSellAll(e)}>Sell All</button>
-                  : null
-                }
-              </div>
-              <input type="submit" value="Submit"/>
+              {ticker !== ""
+                ? (
+                  <>  
+                    <label htmlFor="buyAmount">Enter The {orderOption} You Are Looking to {(buySellOption).split(" ")[0]}</label>
+                    <input 
+                      type="number" 
+                      name="buyAmount"
+                      value={buyAmount.amount}
+                      onChange={(e) => setBuyAmount(e.target.value)}
+                      placeholder={`Enter ${orderOption === "Number of Stocks" ? "Number" : "Amount"}`} 
+                    />
+                    <div className="newOrderButtons">
+                      <button onClick={(e) => e.preventDefault()}>Check Current Price</button>
+                      {buySellOption === "Sell" 
+                        ? <button onClick={(e) => handleSellAll(e)}>Sell All</button>
+                        : null
+                      }
+                    </div>
+                    <input type="submit" value="Submit"/>
+                  </>
+                )
+                : null
+              }
             </>
           ) 
           : null
