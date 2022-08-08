@@ -12,6 +12,7 @@ export default function NewOrderForm({ stocks }) {
     amount: 0,
     sellAll: false
   });
+  const [stockType, setStockType] = useState("")
   
   function handleSelect(e) {
     e.preventDefault();
@@ -73,7 +74,7 @@ export default function NewOrderForm({ stocks }) {
         ticker: ticker,
         totalStocksHeld: buyAmount.amount,
         favorite: false,
-
+        holdingType: stockType
       }
     }
     
@@ -115,13 +116,25 @@ export default function NewOrderForm({ stocks }) {
               <label htmlFor="stockTicker">Enter the Stock Ticker for this Stock</label>
               {buySellOption === "Buy New"
                 ? (
-                  <input 
-                    type="text"
-                    name="stockTicker"
-                    value={ticker}
-                    onChange={(e) => setTicker(e.target.value)}
-                    placeholder="Enter Stock Ticker"
-                  />
+                  <>
+                    <input 
+                      type="text"
+                      name="stockTicker"
+                      value={ticker}
+                      onChange={(e) => setTicker(e.target.value)}
+                      placeholder="Enter Stock Ticker"
+                    />
+                    <label htmlFor="investmentType">Choose the Investment Type</label>
+                    <select
+                      name="investmentType"
+                      onChange={(e) => setStockType(e.target.value) }
+                    >
+                      <option hidden default>Pick an Investment Type</option>
+                      <option value="Domestic">Domestic</option>
+                      <option value="International">International</option>
+                      <option value="Cryptocurrency">Cryptocurrency</option>
+                    </select>
+                  </>
                   )
                 : (
                   <select 
@@ -133,11 +146,6 @@ export default function NewOrderForm({ stocks }) {
                   </select>
                 )
               }
-              {/* <label htmlFor="buy-type-select">Enter Which Option You Are Looking to {(buySellOption).split(" ")[0]}</label>
-              <select name="buy-type-select" onChange={(e) => handleSelect(e)}>
-                <option value="number">Number of Stocks</option>
-                <option value="dollars">Dollar Amount</option>
-              </select> */}
               {ticker !== ""
                 ? (
                   <>  
