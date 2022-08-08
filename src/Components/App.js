@@ -40,7 +40,19 @@ function App() {
   }, [])
   
   function handleNewOrder(stock) {
-    
+
+  }
+
+  function handleFavorite(newFavoriteStock) {
+    const newStocks = stocks.map(stock => {
+      if (stock.id === newFavoriteStock.id) {
+        return newFavoriteStock
+      } else {
+        return stock
+      }
+    })
+
+    setStocks(newStocks)
   }
 
   return (
@@ -48,8 +60,8 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<StockList stocks={stocks} />} />
-        <Route path="/favorites" element={<Favorites stocks={stocks} />} />
+        <Route exact path="/" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
+        <Route path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
         <Route path="/allocations" element={<Allocations stocks={stocks} />} />
         <Route path="/order" element={<NewOrderForm stocks={stocks} onNewOrder={handleNewOrder} />} />
       </Routes>

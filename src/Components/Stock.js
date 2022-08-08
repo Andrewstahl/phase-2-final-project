@@ -22,11 +22,11 @@ export default function Stock({ stock, onFavorite }) {
       },
       body: JSON.stringify({
         ...stock,
-        "favorite": favoriteSelection
+        "favorite": newFavoriteSelection
       })
     })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => onFavorite(data))
   }
 
   return (
