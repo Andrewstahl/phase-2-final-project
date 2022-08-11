@@ -49,6 +49,8 @@ Here's a quick outline of the responsibilities for this project, henceforth know
 - I had the db.json file originally include datapoints around the holdings/purchases, such as the number of shares purchased, amount purchased, and date purchase. I had to simplify the scope due to the constraints of the API but this can definitely be added in the future
 - Allow puchase of dollars instead of just number of shares (again, had to adjust functionality due to API constraints)
 - Create a dynamic auto-complete dropdown if the user is buying new stock to show stock tickers (right now it's just a user input)
+- Logic that prevents you from selling above the total amount you have in your portfolio
+- Logic that prevents you from "Buying New" on a stock you already own
 
 ## Additional Posts
 - YouTube walkthrough (Not Available)
