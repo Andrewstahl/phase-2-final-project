@@ -3,33 +3,32 @@ import React, { useState } from "react";
 
 export default function NewOrderForm({ stocks }) {
   // const [userSelection, setUserSelection] = useState("Number");
-  const [ticker, setTicker] = useState("");
-  // I created this as an object so I can track whether the user is trying to sellAll
-  // without creating a new state
-  const [buySellOption, setBuySellOption] = useState("")
-  const [orderOption, setOrderOption] = useState("Number of Stocks");
-  const [buyAmount, setBuyAmount] = useState({
-    amount: 0,
+  const [formData, setFormData] = useState({
+    orderOption: "",
+    ticker: "",
+    holdingType: "",
+    orderAmount: 0,
     sellAll: false
-  });
-  const [stockType, setStockType] = useState("")
+  })
   
   function handleSelect(e) {
     e.preventDefault();
-    if (e.target.name === "buy-sell-select") {
-      setBuySellOption(e.target.options[e.target.selectedIndex].text)
-    } else if (e.target.name === "buy-type-select") {
-      setOrderOption(e.target.options[e.target.selectedIndex].text)
-    }
+    setFormData({
+      ...formData,
+      orderOption: e.target.options[e.target.selectedIndex].text
+    })
+    
   }
-
+  
   function handleSellAll(e) {
     e.preventDefault();
     
-    const totalShares = stocks.filter(stock => stock.ticker === ticker)[0].totalStocksHeld
+    console.log("I've been clicked")
+    const totalShares = stocks.filter(stock => stock.ticker === formData.ticker)[0].totalStocksHeld
     
-    setBuyAmount({
-      amount: totalShares,
+    setFormData({
+      ...formData,
+      orderAmount: totalShares,
       sellAll: true
     })
  
@@ -44,15 +43,15 @@ export default function NewOrderForm({ stocks }) {
     // Specifically for buying more or selling something that's in 
     // your portfolio, we will have different methods for fetching
     // this data
-    if (buySellOption === "Sell" || buySellOption === "Buy More") {
+    if (formData.orderOption === "Sell" || formData.orderOption === "Buy More") {
       // For either of these, we're going to need the ticker ID
       // for the URL
       const returnedStock = stocks.filter(stock => {
-        return stock.ticker === ticker ? stock.id : null})[0];
-      const tickerId = returnedStock.ticker;
+        return stock.ticker === formData.ticker ? stock.id : null})[0];
+      const tickerId = returnedStock.id;
       const currentStockAmount = returnedStock.totalStocksHeld;
 
-      if (buyAmount.sellAll === true) {
+      if (formData.orderAmount >= currentStockAmount || (formData.sellAll === true && formData.orderAmount >= currentStockAmount)) {
         // if we've selected to sell everything, we're going to need
         // to delete that item
         fetchMethod = "DELETE";
@@ -61,24 +60,32 @@ export default function NewOrderForm({ stocks }) {
         // Otherwise, we're going to just patch it with the 
         // number of stocks that we're going to purchase
         fetchMethod = "PATCH"
-        body = {
-          totalStocksHeld: currentStockAmount + buyAmount.amount 
+        // At this point, we'll need to either increase or decrease the 
+        // holdings depending on if we're buying or selling
+        if (formData.orderOption === "Sell") {
+          body = {
+            totalStocksHeld: currentStockAmount - parseInt(formData.orderAmount)
+          }
+        } else {
+          body = {
+            totalStocksHeld: currentStockAmount + parseInt(formData.orderAmount)
+          }
         }
       }
       endingUrl = tickerId
 
-    } else if (buySellOption === "Buy New") {
+    } else if (formData.orderOption === "Buy New") {
       fetchMethod = "POST";
       endingUrl = "";
       body = {
-        ticker: ticker,
-        totalStocksHeld: buyAmount.amount,
+        ticker: formData.ticker,
+        totalStocksHeld: formData.orderAmount,
         favorite: false,
-        holdingType: stockType
+        holdingType: formData.holdingType
       }
     }
     
-    handleFetch(fetchMethod, endingUrl, body, callback)
+    console.log(fetchMethod, endingUrl, body)
   }
 
   function handleFetch(fetchMethod, endingUrl, body, callback) {
@@ -110,24 +117,24 @@ export default function NewOrderForm({ stocks }) {
           <option value="buy-more">Buy More</option>
           <option value="sell">Sell</option>
         </select>
-        {buySellOption !== "" 
+        {formData.orderOption !== "" 
           ? (
             <>
               <label htmlFor="stockTicker">Enter the Stock Ticker for this Stock</label>
-              {buySellOption === "Buy New"
+              {formData.orderOption === "Buy New"
                 ? (
                   <>
                     <input 
                       type="text"
                       name="stockTicker"
-                      value={ticker}
-                      onChange={(e) => setTicker(e.target.value)}
+                      value={formData.ticker}
+                      onChange={(e) => setFormData({...formData, ticker: e.target.value})}
                       placeholder="Enter Stock Ticker"
                     />
                     <label htmlFor="investmentType">Choose the Investment Type</label>
                     <select
                       name="investmentType"
-                      onChange={(e) => setStockType(e.target.value) }
+                      onChange={(e) => setFormData({...formData, holdingType: e.target.value}) }
                     >
                       <option hidden default>Pick an Investment Type</option>
                       <option value="Domestic">Domestic</option>
@@ -138,28 +145,28 @@ export default function NewOrderForm({ stocks }) {
                   )
                 : (
                   <select 
-                    name="stockTicker" 
-                    onChange={(e) => setTicker(e.target.value)}
+                    name="stockTicker"
+                    onChange={(e) => setFormData({...formData, ticker: e.target.value})}
                   >
                     <option hidden default>Pick a Ticker</option>
                     {currentStocks}
                   </select>
                 )
               }
-              {ticker !== ""
+              {formData.ticker !== ""
                 ? (
                   <>  
-                    <label htmlFor="buyAmount">Enter The {orderOption} You Are Looking to {(buySellOption).split(" ")[0]}</label>
+                    <label htmlFor="orderAmount">Enter The Amount You Are Looking to {(formData.orderOption).split(" ")[0]}</label>
                     <input 
                       type="number" 
-                      name="buyAmount"
-                      value={buyAmount.amount}
-                      onChange={(e) => setBuyAmount(e.target.value)}
-                      placeholder={`Enter ${orderOption === "Number of Stocks" ? "Number" : "Amount"}`} 
+                      name="orderAmount"
+                      value={formData.orderAmount}
+                      onChange={(e) => setFormData({...formData, orderAmount: e.target.value})}
+                      placeholder={`Enter Number of Stocks`} 
                     />
                     <div className="newOrderButtons">
                       <button onClick={(e) => e.preventDefault()}>Check Current Price</button>
-                      {buySellOption === "Sell" 
+                      {formData.orderOption === "Sell" 
                         ? <button onClick={(e) => handleSellAll(e)}>Sell All</button>
                         : null
                       }
