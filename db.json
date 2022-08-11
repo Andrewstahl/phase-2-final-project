@@ -22,7 +22,7 @@
       "ticker": "PAYC",
       "totalStocksHeld": 52,
       "holdingType": "Domestic",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": 4,
