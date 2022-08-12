@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 // import Favorites from "./Favorites";
 
-export default function NewOrderForm({ stocks }) {
+export default function NewOrderForm({ stocks, onOrderPlaced }) {
   // const [userSelection, setUserSelection] = useState("Number");
   const [formData, setFormData] = useState({
-    orderOption: "",
+    orderOption: "Pick an Option",
     ticker: "",
     holdingType: "",
     orderAmount: 0,
@@ -38,7 +38,7 @@ export default function NewOrderForm({ stocks }) {
     e.preventDefault();
     // Grab the ticker ID so we can use it with the fetches
     
-    let fetchMethod, endingUrl, body, callback
+    let fetchMethod, endingUrl, body, stock
 
     // Specifically for buying more or selling something that's in 
     // your portfolio, we will have different methods for fetching
@@ -50,8 +50,8 @@ export default function NewOrderForm({ stocks }) {
         return stock.ticker === formData.ticker ? stock.id : null})[0];
       const tickerId = returnedStock.id;
       const currentStockAmount = returnedStock.totalStocksHeld;
-
-      if (formData.orderAmount >= currentStockAmount || (formData.sellAll === true && formData.orderAmount >= currentStockAmount)) {
+      
+      if (formData.orderOption === "Sell" && (formData.sellAll === true || formData.orderAmount >= currentStockAmount)) {
         // if we've selected to sell everything, we're going to need
         // to delete that item
         fetchMethod = "DELETE";
@@ -72,32 +72,45 @@ export default function NewOrderForm({ stocks }) {
           }
         }
       }
-      endingUrl = tickerId
-
+      endingUrl = `/${tickerId}`
+      stock = returnedStock
+      
     } else if (formData.orderOption === "Buy New") {
       fetchMethod = "POST";
       endingUrl = "";
       body = {
         ticker: formData.ticker,
-        totalStocksHeld: formData.orderAmount,
+        totalStocksHeld: parseInt(formData.orderAmount),
         favorite: false,
         holdingType: formData.holdingType
       }
+      stock = body
     }
     
-    console.log(fetchMethod, endingUrl, body)
+    handleFetch(fetchMethod, endingUrl, body, stock)
   }
 
-  function handleFetch(fetchMethod, endingUrl, body, callback) {
-    fetch(`http://localhost:4000/stocks/${endingUrl}`, {
-      method: {fetchMethod},
+  function handleFetch(fetchMethod, endingUrl, body, stock) {
+    // console.log(fetchMethod)
+    fetch(`http://localhost:4000/stocks${endingUrl}`, {
+      method: fetchMethod,
       headers: {
         "CONTENT-TYPE": "application/json"
       },
-      body: JSON.stringify({body})
+      body: JSON.stringify(body)
     })
       .then(r => r.json())
       .then(data => console.log(data))
+    
+    setFormData({
+      orderOption: "Pick an Option",
+      ticker: "",
+      holdingType: "",
+      orderAmount: 0,
+      sellAll: false
+    })
+
+    onOrderPlaced(fetchMethod, stock)
   }
 
   // This creates options for the select field if we are selling stock or buying more
@@ -117,7 +130,7 @@ export default function NewOrderForm({ stocks }) {
           <option value="buy-more">Buy More</option>
           <option value="sell">Sell</option>
         </select>
-        {formData.orderOption !== "" 
+        {formData.orderOption !== "Pick an Option" 
           ? (
             <>
               <label htmlFor="stockTicker">Enter the Stock Ticker for this Stock</label>
@@ -161,7 +174,11 @@ export default function NewOrderForm({ stocks }) {
                       type="number" 
                       name="orderAmount"
                       value={formData.orderAmount}
-                      onChange={(e) => setFormData({...formData, orderAmount: e.target.value})}
+                      onChange={(e) => setFormData({
+                        ...formData, 
+                        orderAmount: e.target.value, 
+                        sellAll: false
+                      })}
                       placeholder={`Enter Number of Stocks`} 
                     />
                     <div className="newOrderButtons">
