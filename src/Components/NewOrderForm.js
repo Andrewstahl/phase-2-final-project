@@ -100,7 +100,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
       body: JSON.stringify(body)
     })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => null)
     
     setFormData({
       orderOption: "Pick an Option",

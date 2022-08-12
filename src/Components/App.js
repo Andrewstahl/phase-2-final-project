@@ -42,6 +42,7 @@ function App() {
   
   function handleOrderPlaced(fetchMethod, orderStock) {
     let updatedStocks;
+    console.log(fetchMethod, orderStock)
     if (fetchMethod === "POST") {
       updatedStocks = [...stocks, orderStock]
     } else if (fetchMethod === "PATCH") {

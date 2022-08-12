@@ -49,6 +49,20 @@
       "favorite": false,
       "last_price": 32.66,
       "last_update": "7/21/2022"
+    },
+    {
+      "ticker": "ALIB",
+      "totalStocksHeld": 5,
+      "favorite": true,
+      "holdingType": "International",
+      "id": 6
+    },
+    {
+      "ticker": "PYCX",
+      "totalStocksHeld": 20,
+      "favorite": true,
+      "holdingType": "Domestic",
+      "id": 7
     }
   ]
 }
