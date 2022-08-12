@@ -36,7 +36,7 @@
       "ticker": "BTC",
       "totalStocksHeld": 5.12,
       "holdingType": "Crypto",
-      "favorite": true,
+      "favorite": false,
       "last_price": 0,
       "last_update": "7/21/2022"
     },
