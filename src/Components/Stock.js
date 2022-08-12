@@ -33,7 +33,7 @@ export default function Stock({ stock, onFavorite }) {
     <div>
       <div className="stock-title">
         <span onClick={() => handleClick()} className={favoriteSelection ? "activated-heart" : ""}>{favoriteSelection ? "♥" : "♡"}</span>
-        <h4>{name} [{ticker}]</h4>
+        <h4>{ticker}</h4>
       </div>
       <p>{totalStocksHeld} Shares</p>
       <p>Type: {holdingType}</p>
