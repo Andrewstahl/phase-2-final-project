@@ -1,15 +1,13 @@
 import React from "react";
-// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+// import { Chart, ChartJs, Title, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJs } from 'chart.js/auto';
 import { Pie } from "react-chartjs-2";
-
-const PChart = require("react-chartjs-2").Pie;
-const Chart = require("chart.js");
+// Chart.register(
+//   Tooltip, Title, ArcElement, Legend
+// );
 
 export default function Allocations({ stocks }) {
   
-  // let Chart = require('chartjs')
-  // ChartJS.register(ArcElement, Tooltip, Legend);
-
   const stockAllocations = {
     domestic: 0,
     international: 0,
@@ -46,11 +44,12 @@ export default function Allocations({ stocks }) {
       }
     ]
   }
-  console.log(data)
+  
   return(
     <div>
       <h3>Placeholder for Pie Chart</h3>
-      <PChart data={data} />
+      <Pie data={data} />
+      {/* <Pie data={data} options={pieOptions} /> */}
     </div>
   )
 }
