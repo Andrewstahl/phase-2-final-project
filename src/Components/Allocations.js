@@ -1,17 +1,16 @@
 import React from "react";
 // import { Chart, ChartJs, Title, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Chart as ChartJs } from 'chart.js/auto';
 import { Pie } from "react-chartjs-2";
+import { Chart as ChartJs } from 'chart.js/auto';
 // Chart.register(
 //   Tooltip, Title, ArcElement, Legend
 // );
 
 export default function Allocations({ stocks }) {
-  
   const stockAllocations = {
     domestic: 0,
     international: 0,
-    cryptocurrency: 0
+    crypto: 0
   }
   
   for (let i = stocks.length - 1; i > 0; --i) {
@@ -19,8 +18,8 @@ export default function Allocations({ stocks }) {
       stockAllocations.domestic += 1
     } else if (stocks[i].holdingType === "International") {
       stockAllocations.international += 1
-    } else if (stocks[i].holdingType === "Cryptocurrency") {
-      stockAllocations.cryptocurrency += 1
+    } else if (stocks[i].holdingType === "Crypto") {
+      stockAllocations.crypto += 1
     }
   }
 
@@ -28,17 +27,20 @@ export default function Allocations({ stocks }) {
     labels: [
       "Domestic",
       "International",
-      "Cryptocurrency"
+      "Crypto"
     ],
-    dataSets: [
+    datasets: [
       {
         label: "Portfolio Allocations",
-        // data: [stockAllocations.domestic, stockAllocations.international, stockAllocations.cryptocurrency],
-        data: [25, 75, 20],
+        data: [
+          ((stockAllocations.domestic / stocks.length) * 100).toFixed(2), 
+          ((stockAllocations.international / stocks.length) * 100).toFixed(2), 
+          ((stockAllocations.crypto / stocks.length) * 100).toFixed(2)
+        ],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'rgb(1,31,75)',
+          'rgb(0,91,150)',
+          'rgb(179,205,224)'
         ],
         hoverOffset: 4
       }
@@ -46,9 +48,12 @@ export default function Allocations({ stocks }) {
   }
   
   return(
-    <div>
-      <h3>Placeholder for Pie Chart</h3>
-      <Pie data={data} />
+    <div className="pieChart">
+      <h3 className="chartTitle">Break-out of Allocations by Holding Type</h3>
+      <div style={{ width: 500, margin:"auto"  }}>
+      {/* <div className="pieChart"> */}
+        <Pie data={data} />
+      </div> 
       {/* <Pie data={data} options={pieOptions} /> */}
     </div>
   )
