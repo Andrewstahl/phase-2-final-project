@@ -152,7 +152,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
                       <option hidden default>Pick an Investment Type</option>
                       <option value="Domestic">Domestic</option>
                       <option value="International">International</option>
-                      <option value="Cryptocurrency">Cryptocurrency</option>
+                      <option value="Crypto">Crypto</option>
                     </select>
                   </>
                   )
