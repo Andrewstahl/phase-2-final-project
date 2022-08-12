@@ -33,7 +33,7 @@ export default function NavBar() {
       <div style={{ ...navLinkStyles }}>
         {/* <h3>NavBar Placeholder</h3> */}
         <NavLink 
-          to="/"
+          to="/home"
           exact
           style={({ isActive }) => (
             isActive ? linkStylesActive : linkStyles 
