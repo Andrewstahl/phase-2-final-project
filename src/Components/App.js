@@ -2,7 +2,7 @@
 import  '../../src/App.css';
 import  '../../src/index.css';
 import React, { useEffect, useState} from "react";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Header from "./Header";
 import NavBar from "./NavBar";
 import StockList from "./StockList"
@@ -30,8 +30,9 @@ import Allocations from './Allocations';
  */
 
 function App() {
-  
   const [stocks, setStocks] = useState([])
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:4000/stocks")
@@ -39,8 +40,25 @@ function App() {
       .then(data => setStocks(data))
   }, [])
   
-  function handleNewOrder(stock) {
+  function handleOrderPlaced(fetchMethod, orderStock) {
+    let updatedStocks;
+    if (fetchMethod === "POST") {
+      updatedStocks = [...stocks, orderStock]
+    } else if (fetchMethod === "PATCH") {
+      updatedStocks = stocks.map(stock => {
+        if (stock.ticker === orderStock.ticker) {
+          return orderStock
+        } else {
+          return stock
+        }
+      })
+    } else if (fetchMethod === "DELETE") {
+      updatedStocks = stocks.filter(stock => stock.ticker !== orderStock.ticker)
+    }
 
+    setStocks(updatedStocks)
+
+    navigate("/home")
   }
 
   function handleFavorite(newFavoriteStock) {
@@ -60,10 +78,10 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
+        <Route exact path="/home" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
         <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
         <Route exact path="/allocations" element={<Allocations stocks={stocks} />} />
-        <Route exact path="/order" element={<NewOrderForm stocks={stocks} onNewOrder={handleNewOrder} />} />
+        <Route exact path="/order" element={<NewOrderForm stocks={stocks} onOrderPlaced={handleOrderPlaced} />} />
       </Routes>
     </>
   );
