@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Stock({ stock, onFavorite }) {
-  const {id, name, ticker, totalStocksHeld, holdingType, favorite} = stock;
+  const {id, ticker, totalStocksHeld, holdingType, favorite} = stock;
   const [favoriteSelection, setFavoriteSelection] = useState(favorite)
 
   // let totalStocks = 0;
