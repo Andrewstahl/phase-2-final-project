@@ -81,6 +81,29 @@ div.stock-title {
   /* float: left; */
 }
 
+div.stockDetailsDiv {
+  justify-content: center;
+  text-align: center;
+  margin-top: 3em;
+  font-size: 20px;
+}
+
+h4.stockDetailsHeader {
+  font-size: 50px;
+  color: rgb(255,255,255);
+}
+
+p.stockDetailsParagraph {
+  font-size: 25px;
+  color: rgb(49, 44, 44);
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 50px 10px
+}
+
 /* div.header {
   /* position: fixed; */
   /* top: 0;

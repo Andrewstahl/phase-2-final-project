@@ -6,6 +6,7 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import Header from "./Header";
 import NavBar from "./NavBar";
 import StockList from "./StockList"
+import StockDetails from './StockDetails';
 import NewOrderForm from './NewOrderForm';
 import Favorites from './Favorites';
 import Allocations from './Allocations';
@@ -80,9 +81,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/home" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
+        <Route exact path="/home/:ticker" element={<StockDetails stocks={stocks} />} />
+        <Route exact path="/:ticker" element={<StockDetails stocks={stocks} />} />
         <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
         <Route exact path="/allocations" element={<Allocations stocks={stocks} />} />
         <Route exact path="/order" element={<NewOrderForm stocks={stocks} onOrderPlaced={handleOrderPlaced} />} />
+        {/* <Route path="*" element={<h1>404 not found</h1>} /> */}
       </Routes>
     </>
   );
