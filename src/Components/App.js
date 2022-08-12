@@ -82,11 +82,12 @@ function App() {
       <Routes>
         <Route exact path="/home" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
         <Route exact path="/home/:ticker" element={<StockDetails stocks={stocks} />} />
-        <Route exact path="/:ticker" element={<StockDetails stocks={stocks} />} />
+        {/* Removed this because then the 404 path doesn't work properly */}
+        {/* <Route exact path="/:ticker" element={<StockDetails stocks={stocks} />} /> */}
         <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
         <Route exact path="/allocations" element={<Allocations stocks={stocks} />} />
         <Route exact path="/order" element={<NewOrderForm stocks={stocks} onOrderPlaced={handleOrderPlaced} />} />
-        {/* <Route path="*" element={<h1>404 not found</h1>} /> */}
+        <Route path="*" element={<h1>404 not found</h1>} />
       </Routes>
     </>
   );
