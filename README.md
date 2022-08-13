@@ -63,7 +63,3 @@ Here's a quick outline of the responsibilities for this project:
 - Medium blog post (Not Available)
 
 ## Resources
-- 
-- 
-
-Include section on running with NPM?
