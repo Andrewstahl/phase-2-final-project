@@ -14,6 +14,8 @@ Before you begin, you will want to run `npm install` to install the dependencies
 ## Project Overview
 This site prompts provides sample data for a stock portfolio. There are different links that will display data pertinent to aspects of the portfolio.
 
+![](https://github.com/Andrewstahl/phase-2-final-project/blob/main/media/Stahl%20Stock%20Tracker.gif)
+
 ### **Home**
 On the home page, the user will see all of the stocks currently in their portfolio. This will show some basic details about the stock, such as the name, ticker, number of shares held, stock type (domestic, international, crypto), and a favorite status. 
 
