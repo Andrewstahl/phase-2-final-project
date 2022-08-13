@@ -9,7 +9,7 @@ This is the repository of my Phase 1 final project for Flatiron School.
 The goal of this project is to leverage my knowledge of JavaScript, React, client-side routing, server-manipulation, and APIs to create a single-page application.
 
 ## Getting Starting
-Before you begin, 
+Before you begin, you will want to run `npm install` to install the dependencies for this project and `npm run` to start the project.
 
 ## Project Overview
 This site prompts provides sample data for a stock portfolio. There are different links that will display data pertinent to aspects of the portfolio.
