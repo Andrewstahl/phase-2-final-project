@@ -6,7 +6,7 @@
       "ticker": "AAPL",
       "totalStocksHeld": 10,
       "holdingType": "Domestic",
-      "favorite": true,
+      "favorite": false,
       "last_price": 122,
       "last_update": "7/21/2022"
     },
@@ -24,9 +24,9 @@
       "id": 3,
       "name": "Paycom",
       "ticker": "PAYC",
-      "totalStocksHeld": 52,
+      "totalStocksHeld": 62,
       "holdingType": "Domestic",
-      "favorite": true,
+      "favorite": false,
       "last_price": 350,
       "last_update": "7/21/2022"
     },
