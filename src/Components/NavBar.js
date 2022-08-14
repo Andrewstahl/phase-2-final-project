@@ -29,9 +29,7 @@ const navLinkStyles = {
 export default function NavBar() {
   return (
     <div style={{ margin: "0 200px" }}>
-      {/* <div style={{ display: "flex", border: "10px" }}> */}
       <div style={{ ...navLinkStyles }}>
-        {/* <h3>NavBar Placeholder</h3> */}
         <NavLink 
           to="/home"
           exact
