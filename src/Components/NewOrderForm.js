@@ -10,8 +10,13 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
     orderAmount: 0,
     sellAll: false
   })
+
+  const [currentStockPrice, setCurrentStockPrice] = useState("")
   
   function handleSelect(e) {
+    
+    setCurrentStockPrice("");
+
     e.preventDefault();
     setFormData({
       ...formData,
@@ -32,6 +37,21 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
       sellAll: true
     })
  
+  }
+
+  function handleStockFetch(e) {
+    e.preventDefault()
+    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${formData.ticker}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`)
+      .then(r => r.json())
+      .then(data => {
+        const quoteData = data["Global Quote"];
+        if (Object.keys(quoteData).length === 0) {
+          setCurrentStockPrice("No Ticker Found")
+        } else {
+          // console.log(parseFloat(quoteData["05. price"]))
+          setCurrentStockPrice(`Current Price: ${parseFloat(quoteData["05. price"])}`)
+        }
+      })
   }
 
   function handleSubmit(e) {
@@ -182,7 +202,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
                       placeholder={`Enter Number of Stocks`} 
                     />
                     <div className="newOrderButtons">
-                      <button onClick={(e) => e.preventDefault()}>Check Current Price</button>
+                      <button onClick={(e) => handleStockFetch(e)}>Check Current Price</button>
                       {formData.orderOption === "Sell" 
                         ? <button onClick={(e) => handleSellAll(e)}>Sell All</button>
                         : null
@@ -198,6 +218,14 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
           : null
         }        
       </form>
+      {currentStockPrice !== "" 
+        ? 
+        <p>
+          {currentStockPrice}
+        </p>
+        : 
+          null
+      }
     </div>
   )
 }
