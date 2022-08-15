@@ -59,7 +59,7 @@ Here's a quick outline of the responsibilities for this project:
 - Logic that prevents you from "Buying New" on a stock you already own
 
 ## Additional Posts
-- YouTube walkthrough (Not Available)
+- [YouTube walkthrough of the project](https://youtu.be/S_coqhNVLxM)
 - [Medium blog post about React Router crash course](https://medium.com/@andrewstahl96/react-router-dom-crash-course-9e61f4bfaaec)
 
 ## Resources

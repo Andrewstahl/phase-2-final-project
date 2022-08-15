@@ -1,22 +1,12 @@
 {
   "stocks": [
     {
-      "id": 1,
-      "name": "Apple",
-      "ticker": "AAPL",
-      "totalStocksHeld": 10,
-      "holdingType": "Domestic",
-      "favorite": false,
-      "last_price": 122,
-      "last_update": "7/21/2022"
-    },
-    {
       "id": 2,
       "name": "Microsoft",
       "ticker": "MSFT",
-      "totalStocksHeld": 42,
+      "totalStocksHeld": 46,
       "holdingType": "Domestic",
-      "favorite": true,
+      "favorite": false,
       "last_price": 0,
       "last_update": "7/21/2022"
     },
@@ -26,7 +16,7 @@
       "ticker": "PAYC",
       "totalStocksHeld": 62,
       "holdingType": "Domestic",
-      "favorite": false,
+      "favorite": true,
       "last_price": 350,
       "last_update": "7/21/2022"
     },
@@ -63,6 +53,13 @@
       "favorite": true,
       "holdingType": "Domestic",
       "id": 7
+    },
+    {
+      "ticker": "CSCO",
+      "totalStocksHeld": 5,
+      "favorite": false,
+      "holdingType": "Domestic",
+      "id": 8
     }
   ]
 }
