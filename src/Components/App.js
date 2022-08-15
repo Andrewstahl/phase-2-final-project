@@ -80,6 +80,7 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
+        <Route exact path="/" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
         <Route exact path="/home" element={<StockList stocks={stocks}  onFavorite={handleFavorite} />} />
         <Route exact path="/home/:ticker" element={<StockDetails stocks={stocks} />} />
         <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
