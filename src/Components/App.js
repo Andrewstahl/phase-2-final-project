@@ -41,7 +41,7 @@ function App() {
       .then(data => setStocks(data))
   }, [])
   
-  function handleOrderPlaced(fetchMethod, orderStock) {
+  function handleOrderPlaced(fetchMethod, orderStock, newHoldingAmount) {
     let updatedStocks;
     console.log(fetchMethod, orderStock)
     if (fetchMethod === "POST") {
@@ -49,7 +49,7 @@ function App() {
     } else if (fetchMethod === "PATCH") {
       updatedStocks = stocks.map(stock => {
         if (stock.ticker === orderStock.ticker) {
-          return orderStock
+          return {...orderStock, "totalStocksHeld": newHoldingAmount}
         } else {
           return stock
         }

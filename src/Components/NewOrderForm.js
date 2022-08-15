@@ -28,7 +28,6 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
   function handleSellAll(e) {
     e.preventDefault();
     
-    console.log("I've been clicked")
     const totalShares = stocks.filter(stock => stock.ticker === formData.ticker)[0].totalStocksHeld
     
     setFormData({
@@ -48,7 +47,6 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
         if (Object.keys(quoteData).length === 0) {
           setCurrentStockPrice("No Ticker Found")
         } else {
-          // console.log(parseFloat(quoteData["05. price"]))
           setCurrentStockPrice(`Current Price: ${parseFloat(quoteData["05. price"])}`)
         }
       })
@@ -58,7 +56,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
     e.preventDefault();
     // Grab the ticker ID so we can use it with the fetches
     
-    let fetchMethod, endingUrl, body, stock
+    let fetchMethod, endingUrl, body, stock, newHoldingAmount
 
     // Specifically for buying more or selling something that's in 
     // your portfolio, we will have different methods for fetching
@@ -75,7 +73,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
         // if we've selected to sell everything, we're going to need
         // to delete that item
         fetchMethod = "DELETE";
-        body = {};
+        body = {}
       } else {
         // Otherwise, we're going to just patch it with the 
         // number of stocks that we're going to purchase
@@ -83,12 +81,19 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
         // At this point, we'll need to either increase or decrease the 
         // holdings depending on if we're buying or selling
         if (formData.orderOption === "Sell") {
+          // Use this variable so we can pass it through back to 
+          // the App component and update the screen in real-time
+          // after an order has been placed. Otherwise, after the order
+          // it would go back to the home screen and not show the updated
+          // amount
+          newHoldingAmount = currentStockAmount - parseInt(formData.orderAmount);
           body = {
-            totalStocksHeld: currentStockAmount - parseInt(formData.orderAmount)
+            totalStocksHeld: newHoldingAmount
           }
         } else {
+          newHoldingAmount = currentStockAmount + parseInt(formData.orderAmount)
           body = {
-            totalStocksHeld: currentStockAmount + parseInt(formData.orderAmount)
+            totalStocksHeld: newHoldingAmount
           }
         }
       }
@@ -107,11 +112,10 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
       stock = body
     }
     
-    handleFetch(fetchMethod, endingUrl, body, stock)
+    handleFetch(fetchMethod, endingUrl, body, stock, newHoldingAmount)
   }
 
-  function handleFetch(fetchMethod, endingUrl, body, stock) {
-    // console.log(fetchMethod)
+  function handleFetch(fetchMethod, endingUrl, body, stock, newHoldingAmount) {
     fetch(`http://localhost:4000/stocks${endingUrl}`, {
       method: fetchMethod,
       headers: {
@@ -129,8 +133,8 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
       orderAmount: 0,
       sellAll: false
     })
-
-    onOrderPlaced(fetchMethod, stock)
+    console.log("New Order Form - ", stock)
+    onOrderPlaced(fetchMethod, stock, newHoldingAmount)
   }
 
   // This creates options for the select field if we are selling stock or buying more
