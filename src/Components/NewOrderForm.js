@@ -183,7 +183,7 @@ export default function NewOrderForm({ stocks, onOrderPlaced }) {
                 : (
                   <select 
                     name="stockTicker"
-                    onChange={(e) => setFormData({...formData, ticker: e.target.value})}
+                    onChange={(e) => setFormData({...formData, [e.target.name]: e.target.value})}
                   >
                     <option hidden default>Pick a Ticker</option>
                     {currentStocks}
