@@ -1,6 +1,6 @@
 # Stahl Stock Trader
 
-This is the repository of my Phase 1 final project for Flatiron School.
+This is the repository of my Phase 2 final project for Flatiron School.
 
 *This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)*
 
