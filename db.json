@@ -6,7 +6,7 @@
       "ticker": "MSFT",
       "totalStocksHeld": 46,
       "holdingType": "Domestic",
-      "favorite": false,
+      "favorite": true,
       "last_price": 0,
       "last_update": "7/21/2022"
     },
@@ -41,13 +41,6 @@
       "last_update": "7/21/2022"
     },
     {
-      "ticker": "ALIB",
-      "totalStocksHeld": 5,
-      "favorite": true,
-      "holdingType": "International",
-      "id": 6
-    },
-    {
       "ticker": "PYCX",
       "totalStocksHeld": 20,
       "favorite": true,
@@ -60,6 +53,13 @@
       "favorite": false,
       "holdingType": "Domestic",
       "id": 8
+    },
+    {
+      "ticker": "PINS",
+      "totalStocksHeld": 5,
+      "favorite": true,
+      "holdingType": "Domestic",
+      "id": 9
     }
   ]
 }
