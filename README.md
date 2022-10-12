@@ -12,7 +12,7 @@ The goal of this project is to leverage my knowledge of JavaScript, React, clien
 Before you begin, you will want to run `npm install` to install the dependencies for this project and `npm run` to start the project.
 
 ## Project Overview
-This site prompts provides sample data for a stock portfolio. There are different links that will display data pertinent to aspects of the portfolio.
+This site provides sample data for a stock portfolio. There are different links that will display data pertinent to aspects of the portfolio.
 
 ![](https://github.com/Andrewstahl/phase-2-final-project/blob/main/media/Stahl%20Stock%20Tracker.gif)
 
