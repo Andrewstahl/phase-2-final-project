@@ -10,6 +10,7 @@ import StockDetails from './StockDetails';
 import NewOrderForm from './NewOrderForm';
 import Favorites from './Favorites';
 import Allocations from './Allocations';
+import Counter from './Counter';
 
 /**
  * App Hierarchy
@@ -85,6 +86,7 @@ function App() {
         <Route exact path="/home/:ticker" element={<StockDetails stocks={stocks} />} />
         <Route exact path="/favorites" element={<Favorites stocks={stocks} onFavorite={handleFavorite} />} />
         <Route exact path="/allocations" element={<Allocations stocks={stocks} />} />
+        <Route exact path="/counter" element={<Counter stocks={stocks} />} />
         <Route exact path="/order" element={<NewOrderForm stocks={stocks} onOrderPlaced={handleOrderPlaced} />} />
         <Route path="*" element={<h1>404 not found</h1>} />
       </Routes>
