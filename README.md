@@ -60,7 +60,7 @@ Here's a quick outline of the responsibilities for this project:
 
 ## Additional Posts
 - [YouTube walkthrough of the project](https://youtu.be/S_coqhNVLxM)
-- [Medium blog post about React Router crash course](https://medium.com/@andrewstahl96/react-router-dom-crash-course-9e61f4bfaaec)
+- [Medium blog post about React Router crash course](https://medium.com/@andrewstahlsoftware/react-router-dom-crash-course-9e61f4bfaaec)
 
 ## Resources
 - [React-Router-Dom v6 Overview and Setup (React-Router-Dom Website)](https://reactrouter.com/docs/en/v6/getting-started/overview)
